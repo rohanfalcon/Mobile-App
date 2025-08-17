@@ -1,0 +1,146 @@
+name: brbapp
+description: A new Flutter project.
+publish_to: 'none'
+
+
+version: 1.0.0+1
+
+environment:
+  #sdk: ">=2.17.3 <3.0.0"
+  sdk: "3.8.1"
+dependencies:
+  googleapis_auth: ^2.0.0
+  dropdown_button2: ^2.3.9
+  flutter_credit_card: ^3.0.6
+  firebase_app_check: ^0.3.2+7
+  firebase_app_check_platform_interface: ^0.1.0+19
+  firebase_app_check_web: ^0.2.0+11
+  package_info_plus: ^8.3.0
+  quick_actions: ^1.1.0
+  webview_flutter: ^4.9.0  # upgrade conflict
+  app_color: ^1.0.1
+  uuid: ^4.3.3
+  footer:
+
+
+  #firebase_database: ^7.1.1
+
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  firebase_core: ^3.15.2
+  #equatable: ^2.0.5
+ ## bloc: ^6.0.3
+  ##flutter_bloc: ^6.0.5
+  ## firebase_database: ^7.1.1
+  rxdart: ^0.28.0
+  rxdart_ext: ^0.3.0
+  #firebase_core_platform_interface: 6.0.0
+  shared_preferences: ^2.2.2
+  #shared_preferences_android: ^2.4.10
+  cloud_firestore: ^5.6.7
+  firebase_auth: ^5.6.0
+  google_sign_in: ^6.1.5
+  ## sign_in_with_apple: 3.2.0
+  ## crypto: 3.0.1
+  font_awesome_flutter: ^10.7.0
+  google_fonts: ^6.1.0
+ ## flutterfire: ^0.0.1
+ ## provider: ^4.1.3 #^6.0.5
+  json_annotation: ^4.7.0
+  google_maps_flutter: ^2.5.3
+  google_api_headers: ^4.5.4
+  ##flutter_datetime_picker: ^1.5.1
+  flutter_datetime_picker_plus: ^2.1.0
+  ##image_form_field: ^0.0.2
+  ##image_form_field:  1.0.0-nullsafety.0
+  image_picker: ^1.0.7
+  firebase_storage: ^12.4.7
+  flutter_web_auth:
+    path: packages/flutter_web_auth
+  ## flutter_google_places_hoc081098: ^2.0.0-beta.1
+  flutter_email_sender: ^7.0.0
+  mailer: ^6.0.1
+  url_launcher: ^6.1.1
+  lottie: ^3.0.0
+  http: ^1.2.1
+  ini: ^2.1.0
+  path_provider: ^2.1.1
+ # updater: 0.2.3
+  upgrader: ^11.4.0
+  flutter_paypal_pay: ^0.0.4
+  paypal_login: ^1.0.1
+  firebase_messaging: ^15.2.7
+  flutter_web_auth_2: ^4.1.0
+  flutter_google_places_hoc081098:
+    path: packages/flutter_google_places_hoc081098
+  #path: flutter_google_places_hoc081098
+    #git:
+     #url: https://github_pFat_11ABRZ6KQ0FpyIkaUDvAY0_zCUQ41VHtDDg0kFE8sPHcSaBQEURXQDUbxSkzvoMDl47GOG3MDJQ1AaaBom@github.com/rohanfalcon/flutter_google_places_hoc081098.git
+    #ref: main
+
+  updater:
+    path: packages/updater
+
+flutter:
+  uses-material-design: true
+
+  assets:
+          - lib/assets/brblogo.png
+          - lib/assets/rainbow.gif
+          - lib/assets/check.json
+          - lib/assets/shea.jpg
+          - lib/assets/Check.png
+          - lib/assets/plate.jpg
+          - lib/assets/serviceAccountKey.json
+        #- lib/assets/drawn.svg
+
+
+dependency_overrides:
+  #shared_preferences_android:
+   #git:
+      #url: https://github.com/flutter/plugins.git
+      #ref: main
+
+  cloud_firestore:
+      path: packages/cloud_firestore-5.6.11
+
+  rxdart_ext:
+    path: packages/rxdart_ext
+  rxdart:
+    path: packages/rxdart-0.28.0
+
+
+
+dev_dependencies:
+  #flutter_test:
+   # sdk: flutter
+  flutter_launcher_icons: ^0.14.3
+
+
+flutter_icons:
+       android: true # "launcher_icon"
+       ios: false
+       image_path: "lib/assets/brblogo.png"
+       flutter_lints: ^2.0.1
+
+       dependency_overrides:
+         google_api_headers_fixed:
+          path: D:/flutter_packages/google_api_header_fix
+
+
+configuration:
+  build_runner: ^2.3.3
+  json_serializable: ^6.5.4
+
+
+fonts:
+  - family: BrbApp
+    fonts:
+       - asset: fonts/BrbApp.ttf
+
+
+
+
+
+
