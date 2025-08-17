@@ -1,0 +1,18 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.brbapp">
+    <!-- Flutter needs it to communicate with the running application
+         to allow setting breakpoints, to provide hot reload, etc.
+    -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+<application
+   android:label="testapp"
+   android:icon="@mipmap/ic_launcher">
+
+   <meta-data android:name="com.google.android.geo.AIzaSyCEsFnhcgkNy4uokoJSFPf1LiDRjHxrTUo"
+             android:value="AIzaSyCb384R3GvyLC0bChyCEGYSlQn-OOOdvP0"/>
+
+    <activity  android:name=".MainActivity">
+     </activity>
+  </application>
+</manifest>
