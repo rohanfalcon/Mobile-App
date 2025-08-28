@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.application")
+    id("com.android.application") version "8.11.1"
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
     id("dev.flutter.flutter-gradle-plugin")
@@ -28,8 +28,8 @@ android {
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = 23 //flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
-        versionCode = flutter.versionCode
-        versionName = flutter.versionName
+        versionCode = 2 //flutter.versionCode
+        versionName = "2.0.9" //flutter.versionName
         multiDexEnabled = true
         manifestPlaceholders["MAPS_API_KEY"] = project.findProperty("MAPS_API_KEY") as String
 

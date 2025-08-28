@@ -1,103 +1,145 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:http/http.dart' as http;
+import 'package:webview_flutter/webview_flutter.dart';
 
 import '../assets/brbGlobals.dart';
 
-void main() {
-  runApp(const PayPalLoginApp());
-}
-
-class PayPalLoginApp extends StatelessWidget {
-  const PayPalLoginApp({super.key});
+class PayPalLoginPage extends StatefulWidget {
+  const PayPalLoginPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'PayPal Login',
-      home: Scaffold(
-        appBar: AppBar(title: const Text('PayPal Login')),
-        body: const Center(child: PayPalLoginButton()),
-      ),
+  State<PayPalLoginPage> createState() => _PayPalLoginPageState();
+}
+
+class _PayPalLoginPageState extends State<PayPalLoginPage> {
+  final clientId = username;
+  final clientSecret = password;
+  final redirectUri = "brbapp://auth"; // <-- must match your PayPal settings
+  final sandbox = false;
+
+  Future<String?> _showPayPalLoginDialog(BuildContext context) async {
+    final controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..loadRequest(
+        Uri.parse(
+          "https://www.paypal.com/signin/authorize?" // switch to live later
+          "response_type=code"
+          "&client_id=$clientId"
+          "&redirect_uri=$redirectUri"
+          "&scope=openid email",
+        ),
+      );
+
+    return await showDialog<String>(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return Dialog(
+          insetPadding: const EdgeInsets.all(16),
+          child: SizedBox(
+            height: 500,
+            child: WebViewWidget(
+              controller: controller
+                ..setNavigationDelegate(
+                  NavigationDelegate(
+                    onNavigationRequest: (request) {
+                      if (request.url.startsWith(redirectUri)) {
+                        final uri = Uri.parse(request.url);
+                        final code = uri.queryParameters["code"];
+                        Navigator.of(context).pop(code);
+                        return NavigationDecision.prevent;
+                      }
+                      return NavigationDecision.navigate;
+                    },
+                  ),
+                ),
+            ),
+          ),
+        );
+      },
     );
   }
-}
 
-class PayPalLoginButton extends StatefulWidget {
-  const PayPalLoginButton({super.key});
+  Future<String?> _getPayPalAccessToken(String code) async {
+    final baseUrl = sandbox
+        ? "https://api-m.sandbox.paypal.com"
+        : "https://api-m.paypal.com";
 
-  @override
-  State<PayPalLoginButton> createState() => _PayPalLoginButtonState();
-}
+    final auth = base64Encode(utf8.encode("$clientId:$clientSecret"));
 
-class _PayPalLoginButtonState extends State<PayPalLoginButton> {
-  String? accessToken;
+    final response = await http.post(
+      Uri.parse("$baseUrl/v1/oauth2/token"),
+      headers: {
+        "Authorization": "Basic $auth",
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: {
+        "grant_type": "authorization_code",
+        "code": code,
+        "redirect_uri": redirectUri,
+      },
+    );
 
-  Future<void> initiatePayPalLogin() async {
-    const clientId =
-        'AevJ4ZoI7uKpAreL_FnWzJH_5KuOcTrPwTVsa9JAVwyUs-t6EUkYuQjHJpQPuj4swO_9iOPmXZOyJW7A';
-    const secret =
-        'EDBnNEbMlqShenpSWfBAhPzlG21yDiw4jSnJn0heylM0yrp2oGukASn071Tt220mSgvbskP_P0YJjohs';
-    const redirectUri = 'https://www.nativexo/paypalpay';
-    const scope = 'openid profile email';
-
-    try {
-      // Step 1: Open PayPal login page
-      final authUrl = Uri.https('www.paypal.com', '/signin/authorize', {
-        'client_id': clientId,
-        'response_type': 'code',
-        'scope': scope,
-        'redirect_uri': redirectUri,
-      });
-
-      final result = await FlutterWebAuth2.authenticate(
-        url: authUrl.toString(),
-        callbackUrlScheme: 'myapp',
-      );
-
-      // Step 2: Extract authorization code
-      final code = Uri.parse(result).queryParameters['code'];
-      if (code == null) throw Exception('No code returned from PayPal');
-
-      // Step 3: Exchange code for token
-      final tokenResponse = await http.post(
-        Uri.https('api.paypal.com', '/v1/oauth2/token'),
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Authorization':
-              'Basic ${base64Encode(utf8.encode('$clientId:$secret'))}',
-        },
-        body: {
-          'grant_type': 'authorization_code',
-          'code': code,
-          'redirect_uri': redirectUri,
-        },
-      );
-
-      final tokenData = jsonDecode(tokenResponse.body);
-      setState(() {
-        accessToken = tokenData['access_token'];
-      });
-    } catch (e) {
-      setState(() {
-        accessToken = 'Error: $e';
-      });
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body)["access_token"];
+    } else {
+      debugPrint("❌ Token error: ${response.body}");
+      return null;
     }
   }
 
+  Future<Map<String, dynamic>?> _getPayPalUserInfo(String accessToken) async {
+    final baseUrl = sandbox
+        ? "https://api-m.sandbox.paypal.com"
+        : "https://api-m.paypal.com";
+
+    final response = await http.get(
+      Uri.parse("$baseUrl/v1/identity/openidconnect/userinfo?schema=openid"),
+      headers: {"Authorization": "Bearer $accessToken"},
+    );
+
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      debugPrint("❌ User info error: ${response.body}");
+      return null;
+    }
+  }
+
+  Future<void> _handleLogin(BuildContext context) async {
+    final code = await _showPayPalLoginDialog(context);
+    if (code == null) return;
+
+    final token = await _getPayPalAccessToken(code);
+    if (token == null) return;
+
+    final user = await _getPayPalUserInfo(token);
+    if (user == null) return;
+    userEmail = user["email"];
+    if (context.mounted) {
+      Navigator.pop(context);
+    }
+    if (!mounted) return;
+
+    /*Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (_) => HomePage(email: user["email"] ?? "Unknown"),
+      ),
+    );*/
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        ElevatedButton(
-          onPressed: initiatePayPalLogin,
-          child: const Text('Login with PayPal'),
+    return Scaffold(
+      appBar: AppBar(title: const Text("Login with PayPal")),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () => _handleLogin(context),
+          child: const Text("Login with PayPal"),
         ),
-        const SizedBox(height: 20),
-        Text(accessToken ?? 'Not logged in'),
-      ],
+      ),
     );
   }
 }

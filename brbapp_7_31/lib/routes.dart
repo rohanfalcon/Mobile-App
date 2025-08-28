@@ -1,5 +1,3 @@
-//import 'package:brbapp/About/about.dart';
-//import 'package:brbapp/profile/profile.dart';
 import 'package:brbapp/Address/driveWayInfo.dart';
 import 'package:brbapp/CancelPost/cancelPost.dart';
 import 'package:brbapp/Card/card.dart';
@@ -11,12 +9,14 @@ import 'package:brbapp/Paypal/paypal.dart';
 import 'package:brbapp/Paypal/paypal_login.dart';
 import 'package:brbapp/Table/table.dart';
 import 'package:brbapp/Vehicle/vehicle.dart';
+import 'package:brbapp/assets/brbGlobals.dart';
 import 'package:brbapp/login/login.dart';
 import 'package:brbapp/Transaction/Transaction.dart';
 import 'package:brbapp/home/home.dart';
 import 'package:brbapp/About/about.dart';
 import 'package:brbapp/Address/address.dart';
 import 'package:brbapp/Services/markers.dart';
+import 'package:paypal_login/paypal_login.dart';
 import 'Card/landLordCard.dart';
 import 'DriveWay/driveway.dart';
 
@@ -40,5 +40,5 @@ var appRoutes = {
   '/landLordCard': (context) => const landLordCard(),
   '/payment': (context) =>
       const PaypalPaymentDemo(amount: null, myContext: null),
-  '/paypalLogin': (context) => const PayPalLoginApp(),
+  '/payPalLogin': (context) => const PayPalLoginPage(),
 };

@@ -323,55 +323,14 @@ class _TransactionScreenState extends State<TransactionScreen> {
                           } // end if
                           else {
                             if (context.mounted) {
-                              //
-                              TextEditingController textFieldController =
-                                  TextEditingController();
-                              if (context.mounted) {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return AlertDialog(
-                                      title: const Text('Paypal Email Address'),
-                                      content: TextField(
-                                        controller: textFieldController,
-                                        decoration: const InputDecoration(
-                                          hintText: "Please enter",
-                                        ),
-                                      ),
-                                      actions: <Widget>[
-                                        TextButton(
-                                          child: const Text('Submit'),
-                                          onPressed: () {
-                                            final CollectionReference
-                                            paypalCollection = FirebaseFirestore
-                                                .instance
-                                                .collection('paypal');
-                                            paypalCollection.add({
-                                              'uid': Fireuser,
-                                              'paypalemail':
-                                                  textFieldController.text,
-                                            });
-
-                                            // Close the dialog
-                                            Navigator.of(context).pop();
-                                          },
-                                        ),
-                                        // cancel
-                                        TextButton(
-                                          child: const Text('Cancel'),
-                                          onPressed: () {
-                                            // Close the dialog
-                                            Navigator.of(context).pop();
-                                          },
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
-
-                                //////////////////////////////////////////
+                              if (await getEmail(context, Fireuser) == true) {
+                                if (context.mounted) {
+                                  Navigator.pushNamed(context, '/cancelPost');
+                                }
                               }
                             }
+
+                            //////////////////////////////////////////
                           }
                         },
                       ),
@@ -414,67 +373,19 @@ class _TransactionScreenState extends State<TransactionScreen> {
                                 TextButton(
                                   child: const Text('OK'),
                                   onPressed: () async {
-                                    showLoaderDialog(context);
+                                    //showLoaderDialog(context);
                                     if (await checkCard()) {
                                       if (context.mounted) {
                                         cancelRental(context);
                                       }
                                     } else {
-                                      print('YOu have no card Dude');
-                                      TextEditingController
-                                      textFieldController =
-                                          TextEditingController();
                                       if (context.mounted) {
-                                        showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return AlertDialog(
-                                              title: const Text(
-                                                'Paypal Email Address',
-                                              ),
-                                              content: TextField(
-                                                controller: textFieldController,
-                                                decoration:
-                                                    const InputDecoration(
-                                                      hintText: "Please enter",
-                                                    ),
-                                              ),
-                                              actions: <Widget>[
-                                                TextButton(
-                                                  child: const Text('Submit'),
-                                                  onPressed: () {
-                                                    final CollectionReference
-                                                    paypalCollection =
-                                                        FirebaseFirestore
-                                                            .instance
-                                                            .collection(
-                                                              'paypal',
-                                                            );
-                                                    paypalCollection.add({
-                                                      'uid': Fireuser,
-                                                      'paypalemail':
-                                                          textFieldController
-                                                              .text,
-                                                    });
-
-                                                    // Close the dialog
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                ),
-                                                // cancel
-                                                TextButton(
-                                                  child: const Text('Cancel'),
-                                                  onPressed: () {
-                                                    // Close the dialog
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                ),
-                                              ],
-                                            );
-                                          },
-                                        );
-
-                                        //////////////////////////////////////////
+                                        if (await getEmail(context, Fireuser) ==
+                                            true) {
+                                          if (context.mounted) {
+                                            cancelRental(context);
+                                          }
+                                        }
                                       }
                                     }
                                   },
@@ -526,63 +437,15 @@ class _TransactionScreenState extends State<TransactionScreen> {
                           var cardData = data.map((d) => Paypal.fromJson(d));
 
                           if (cardData.isEmpty) {
-                            print('Card data is empty');
                             // Remove this edit and just simply as them to login. Take the Url return info and store it.
-
-                            //TextEditingController textFieldController =
-                            //TextEditingController();
                             if (context.mounted) {
-                              Navigator.pushNamed(context, '/paypalLogin');
+                              if (await getEmail(context, Fireuser) == true) {
+                                if (context.mounted) {
+                                  Navigator.pushNamed(context, '/table');
+                                }
+                              }
                             }
-
-                            // '&state=$state';
-
-                            /*if (context.mounted) {
-                              showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return AlertDialog(
-                                    title: const Text('Paypal Email Address'),
-                                    content: TextField(
-                                      controller: textFieldController,
-                                      decoration: const InputDecoration(
-                                        hintText: "Please enter",
-                                      ),
-                                    ),
-                                    actions: <Widget>[
-                                      TextButton(
-                                        child: const Text('Submit'),
-                                        onPressed: () {
-                                          final CollectionReference
-                                          paypalCollection = FirebaseFirestore
-                                              .instance
-                                              .collection('paypal');
-                                          paypalCollection.add({
-                                            'uid': uid,
-                                            'paypalemail':
-                                                textFieldController.text,
-                                          });
-
-                                          // Close the dialog
-                                          Navigator.of(context).pop();
-                                        },
-                                      ),
-                                      // cancel
-                                      TextButton(
-                                        child: const Text('Cancel'),
-                                        onPressed: () {
-                                          // Close the dialog
-                                          Navigator.of(context).pop();
-                                        },
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                            }  */
-                          }
-                          //Navigator.pushNamed(context, '/landLordCard');
-                          else {
+                          } else {
                             print('The paypal data may be available');
                             if (context.mounted) {
                               Navigator.pushNamed(context, '/table');

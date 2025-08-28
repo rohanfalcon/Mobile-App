@@ -55,6 +55,7 @@ class CardState extends State<Card> {
             PaypalPaymentDemo(amount: charge, myContext: context),
       ),
     );
+    // We should do a navigator pop here
 
     if (context.mounted) {
       takeMoney("Parking fee", context);
@@ -178,7 +179,7 @@ class CardState extends State<Card> {
   // This function takes money right off a credit or debit card
   Future<void> takeMoney(String title, context) async {
     // Creates a keyed charge
-
+    print('This is transmit at Takemoney $transmit');
     if (transmit) // was 201
     //if (response.statusCode == 403)
     {

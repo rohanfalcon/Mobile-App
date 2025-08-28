@@ -13,6 +13,7 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import "package:flutter/services.dart" as s;
 
+import '../Paypal/paypal_login.dart';
 
 var brbuser = BrbUser(); // This will make it retain the last input. Not using.
 final messaging = FirebaseMessaging.instance;
@@ -31,6 +32,7 @@ bool login = false;
 bool transmit = false;
 bool guestAccess = false;
 var docPath = '';
+var userEmail = '';
 var globalFileName = '';
 late BuildContext globalContext;
 //bool pick = false;
@@ -41,6 +43,7 @@ const username =
 const password =
     'EDBnNEbMlqShenpSWfBAhPzlG21yDiw4jSnJn0heylM0yrp2oGukASn071Tt220mSgvbskP_P0YJjohs'; //
 
+const redirectURL = 'brbapp://auth';
 //final username = 'ARMCFU9AHMEPcEvJAbTkJAdPeoitl4C5gZfHTK94b5FeVtpmcUqu13BGS_hz3R7Kw2vn962L1V8QzEKN';
 //final password = 'EEUmyDHy6F8_04bu6uS0MKb0rhqxxDJab2yTiV8lLg85Z7kT7wKtPd6LrPRJKLMCBuywKTCxCjyIZc6X';
 
@@ -122,6 +125,28 @@ String fixDate(DateTime mydate) {
   var myString =
       myDateFormat.format(newDate) + DateFormat('').format(newDate) + amPm;
   return myString;
+}
+
+Future<bool> getEmail(BuildContext context, uid) async {
+  if (context.mounted) {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const PayPalLoginPage()),
+    );
+  }
+  final email1 = userEmail;
+  print('Paypal email is from Transaction Screen $email1');
+  // put email in the database
+  if (email1 != '') {
+    final CollectionReference paypalCollection = FirebaseFirestore.instance
+        .collection('paypal');
+    paypalCollection.add({'uid': uid, 'paypalemail': email1});
+    userEmail = ''; // re-initialize
+    // no More dialog
+    return true;
+  } else {
+    return false;
+  }
 }
 
 Future<File> getImageFileFromAssets(String path) async {

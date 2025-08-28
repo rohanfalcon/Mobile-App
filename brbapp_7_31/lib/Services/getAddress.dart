@@ -90,7 +90,11 @@ cancelRental(context) async {
   var userData = data0.map((d) => Users.fromJson(d));
   if (userData.isNotEmpty) {
     DocumentSnapshot document = data.docs.first;
+
     double refund = document['Due'] - 3.00; // Take our fee
+    if (refund < 0) {
+      refund = document['Due'];
+    }
 
     status = await refundCustomer(
       '$refund',
