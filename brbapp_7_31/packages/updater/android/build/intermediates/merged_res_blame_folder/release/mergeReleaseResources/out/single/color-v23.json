@@ -1,0 +1,38 @@
+[
+    {
+        "merged": "com.marsad.updater-release-27:/color-v23/abc_color_highlight_material.xml",
+        "source": "com.marsad.updater-appcompat-1.6.1-1:/color-v23/abc_color_highlight_material.xml"
+    },
+    {
+        "merged": "com.marsad.updater-release-27:/color-v23/abc_btn_colored_borderless_text_material.xml",
+        "source": "com.marsad.updater-appcompat-1.6.1-1:/color-v23/abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+        "merged": "com.marsad.updater-release-27:/color-v23/abc_tint_default.xml",
+        "source": "com.marsad.updater-appcompat-1.6.1-1:/color-v23/abc_tint_default.xml"
+    },
+    {
+        "merged": "com.marsad.updater-release-27:/color-v23/abc_tint_seek_thumb.xml",
+        "source": "com.marsad.updater-appcompat-1.6.1-1:/color-v23/abc_tint_seek_thumb.xml"
+    },
+    {
+        "merged": "com.marsad.updater-release-27:/color-v23/abc_tint_spinner.xml",
+        "source": "com.marsad.updater-appcompat-1.6.1-1:/color-v23/abc_tint_spinner.xml"
+    },
+    {
+        "merged": "com.marsad.updater-release-27:/color-v23/abc_tint_btn_checkable.xml",
+        "source": "com.marsad.updater-appcompat-1.6.1-1:/color-v23/abc_tint_btn_checkable.xml"
+    },
+    {
+        "merged": "com.marsad.updater-release-27:/color-v23/abc_btn_colored_text_material.xml",
+        "source": "com.marsad.updater-appcompat-1.6.1-1:/color-v23/abc_btn_colored_text_material.xml"
+    },
+    {
+        "merged": "com.marsad.updater-release-27:/color-v23/abc_tint_switch_track.xml",
+        "source": "com.marsad.updater-appcompat-1.6.1-1:/color-v23/abc_tint_switch_track.xml"
+    },
+    {
+        "merged": "com.marsad.updater-release-27:/color-v23/abc_tint_edittext.xml",
+        "source": "com.marsad.updater-appcompat-1.6.1-1:/color-v23/abc_tint_edittext.xml"
+    }
+]

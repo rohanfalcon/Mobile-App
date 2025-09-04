@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="6" by="lint 8.10.1">
+
+    <issue
+        id="KotlinNullnessAnnotation"
+        severity="Warning"
+        message="Do not use `@NonNull` in Kotlin; the nullability is already implied by the Kotlin type `FlutterPlugin.FlutterPluginBinding` **not** ending with `?`"
+        category="Correctness"
+        priority="6"
+        summary="Kotlin nullability annotation"
+        explanation="In Kotlin, nullness is part of the type system; `s: String` is **never** null and `s: String?` is sometimes null, whether or not you add in additional annotations stating `@NonNull` or `@Nullable`. These are likely copy/paste mistakes, and are misleading."
+        errorLine1="  override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {"
+        errorLine2="                                  ~~~~~~~~">
+        <location
+            file="D:\flutter_window\brbapp\brbapp_6_12\packages\updater\android\src\main\kotlin\com\marsad\updater\UpdaterPlugin.kt"
+            line="19"
+            column="35"/>
+    </issue>
+
+    <issue
+        id="KotlinNullnessAnnotation"
+        severity="Warning"
+        message="Do not use `@NonNull` in Kotlin; the nullability is already implied by the Kotlin type `MethodCall` **not** ending with `?`"
+        category="Correctness"
+        priority="6"
+        summary="Kotlin nullability annotation"
+        explanation="In Kotlin, nullness is part of the type system; `s: String` is **never** null and `s: String?` is sometimes null, whether or not you add in additional annotations stating `@NonNull` or `@Nullable`. These are likely copy/paste mistakes, and are misleading."
+        errorLine1="  override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {"
+        errorLine2="                            ~~~~~~~~">
+        <location
+            file="D:\flutter_window\brbapp\brbapp_6_12\packages\updater\android\src\main\kotlin\com\marsad\updater\UpdaterPlugin.kt"
+            line="24"
+            column="29"/>
+    </issue>
+
+    <issue
+        id="KotlinNullnessAnnotation"
+        severity="Warning"
+        message="Do not use `@NonNull` in Kotlin; the nullability is already implied by the Kotlin type `Result` **not** ending with `?`"
+        category="Correctness"
+        priority="6"
+        summary="Kotlin nullability annotation"
+        explanation="In Kotlin, nullness is part of the type system; `s: String` is **never** null and `s: String?` is sometimes null, whether or not you add in additional annotations stating `@NonNull` or `@Nullable`. These are likely copy/paste mistakes, and are misleading."
+        errorLine1="  override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {"
+        errorLine2="                                                       ~~~~~~~~">
+        <location
+            file="D:\flutter_window\brbapp\brbapp_6_12\packages\updater\android\src\main\kotlin\com\marsad\updater\UpdaterPlugin.kt"
+            line="24"
+            column="56"/>
+    </issue>
+
+    <issue
+        id="KotlinNullnessAnnotation"
+        severity="Warning"
+        message="Do not use `@NonNull` in Kotlin; the nullability is already implied by the Kotlin type `FlutterPlugin.FlutterPluginBinding` **not** ending with `?`"
+        category="Correctness"
+        priority="6"
+        summary="Kotlin nullability annotation"
+        explanation="In Kotlin, nullness is part of the type system; `s: String` is **never** null and `s: String?` is sometimes null, whether or not you add in additional annotations stating `@NonNull` or `@Nullable`. These are likely copy/paste mistakes, and are misleading."
+        errorLine1="  override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {"
+        errorLine2="                                    ~~~~~~~~">
+        <location
+            file="D:\flutter_window\brbapp\brbapp_6_12\packages\updater\android\src\main\kotlin\com\marsad\updater\UpdaterPlugin.kt"
+            line="32"
+            column="37"/>
+    </issue>
+
+    <issue
+        id="AndroidGradlePluginVersion"
+        severity="Warning"
+        message="A newer version of com.android.tools.build:gradle than 7.3.0 is available: 8.11.0. (There is also a newer version of 7.3.𝑥 available, if upgrading to 8.11.0 is difficult: 7.3.1)"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Android Gradle Plugin Version"
+        explanation="This detector looks for usage of the Android Gradle Plugin where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="        classpath &apos;com.android.tools.build:gradle:7.3.0&apos;"
+        errorLine2="                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="D:\flutter_window\brbapp\brbapp_6_12\packages\updater\android\build.gradle"
+            line="12"
+            column="19"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of `compileSdkVersion` than 33 is available: 35"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="    compileSdkVersion 33"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="D:\flutter_window\brbapp\brbapp_6_12\packages\updater\android\build.gradle"
+            line="28"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of org.jetbrains.kotlin:kotlin-stdlib-jdk7 than 1.8.20 is available: 2.1.0"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="    implementation &quot;org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version&quot;"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="D:\flutter_window\brbapp\brbapp_6_12\packages\updater\android\build.gradle"
+            line="52"
+            column="20"/>
+    </issue>
+
+</issues>

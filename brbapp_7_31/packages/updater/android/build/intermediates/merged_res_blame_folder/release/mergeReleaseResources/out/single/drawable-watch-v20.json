@@ -1,0 +1,6 @@
+[
+    {
+        "merged": "com.marsad.updater-release-27:/drawable-watch-v20/abc_dialog_material_background.xml",
+        "source": "com.marsad.updater-appcompat-1.6.1-1:/drawable-watch-v20/abc_dialog_material_background.xml"
+    }
+]

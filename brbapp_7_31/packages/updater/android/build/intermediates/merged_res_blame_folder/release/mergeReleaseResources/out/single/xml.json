@@ -1,0 +1,6 @@
+[
+    {
+        "merged": "com.marsad.updater-release-27:/xml/filepaths.xml",
+        "source": "com.marsad.updater-release-30:/xml/filepaths.xml"
+    }
+]

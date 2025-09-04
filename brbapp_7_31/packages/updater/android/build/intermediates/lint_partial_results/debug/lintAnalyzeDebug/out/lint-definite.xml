@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 8.10.1" type="incidents">
+
+    <incident
+        id="KotlinNullnessAnnotation"
+        severity="warning"
+        message="Do not use `@NonNull` in Kotlin; the nullability is already implied by the Kotlin type `FlutterPlugin.FlutterPluginBinding` **not** ending with `?`">
+        <fix-replace
+            description="Delete `@NonNull`"
+            robot="true"
+            independent="true"
+            replacement=""
+            priority="0">
+            <range
+                file="${:updater*debug*MAIN*sourceProvider*0*javaDir*1}/com/marsad/updater/UpdaterPlugin.kt"
+                startOffset="739"
+                endOffset="748"/>
+        </fix-replace>
+        <location
+            file="${:updater*debug*MAIN*sourceProvider*0*javaDir*1}/com/marsad/updater/UpdaterPlugin.kt"
+            line="19"
+            column="35"
+            startOffset="739"
+            endLine="19"
+            endColumn="43"
+            endOffset="747"/>
+    </incident>
+
+    <incident
+        id="KotlinNullnessAnnotation"
+        severity="warning"
+        message="Do not use `@NonNull` in Kotlin; the nullability is already implied by the Kotlin type `MethodCall` **not** ending with `?`">
+        <fix-replace
+            description="Delete `@NonNull`"
+            robot="true"
+            independent="true"
+            replacement=""
+            priority="0">
+            <range
+                file="${:updater*debug*MAIN*sourceProvider*0*javaDir*1}/com/marsad/updater/UpdaterPlugin.kt"
+                startOffset="957"
+                endOffset="966"/>
+        </fix-replace>
+        <location
+            file="${:updater*debug*MAIN*sourceProvider*0*javaDir*1}/com/marsad/updater/UpdaterPlugin.kt"
+            line="24"
+            column="29"
+            startOffset="957"
+            endLine="24"
+            endColumn="37"
+            endOffset="965"/>
+    </incident>
+
+    <incident
+        id="KotlinNullnessAnnotation"
+        severity="warning"
+        message="Do not use `@NonNull` in Kotlin; the nullability is already implied by the Kotlin type `Result` **not** ending with `?`">
+        <fix-replace
+            description="Delete `@NonNull`"
+            robot="true"
+            independent="true"
+            replacement=""
+            priority="0">
+            <range
+                file="${:updater*debug*MAIN*sourceProvider*0*javaDir*1}/com/marsad/updater/UpdaterPlugin.kt"
+                startOffset="984"
+                endOffset="993"/>
+        </fix-replace>
+        <location
+            file="${:updater*debug*MAIN*sourceProvider*0*javaDir*1}/com/marsad/updater/UpdaterPlugin.kt"
+            line="24"
+            column="56"
+            startOffset="984"
+            endLine="24"
+            endColumn="64"
+            endOffset="992"/>
+    </incident>
+
+    <incident
+        id="KotlinNullnessAnnotation"
+        severity="warning"
+        message="Do not use `@NonNull` in Kotlin; the nullability is already implied by the Kotlin type `FlutterPlugin.FlutterPluginBinding` **not** ending with `?`">
+        <fix-replace
+            description="Delete `@NonNull`"
+            robot="true"
+            independent="true"
+            replacement=""
+            priority="0">
+            <range
+                file="${:updater*debug*MAIN*sourceProvider*0*javaDir*1}/com/marsad/updater/UpdaterPlugin.kt"
+                startOffset="1216"
+                endOffset="1225"/>
+        </fix-replace>
+        <location
+            file="${:updater*debug*MAIN*sourceProvider*0*javaDir*1}/com/marsad/updater/UpdaterPlugin.kt"
+            line="32"
+            column="37"
+            startOffset="1216"
+            endLine="32"
+            endColumn="45"
+            endOffset="1224"/>
+    </incident>
+
+    <incident
+        id="AndroidGradlePluginVersion"
+        severity="warning"
+        message="A newer version of com.android.tools.build:gradle than 7.3.0 is available: 8.11.0. (There is also a newer version of 7.3.𝑥 available, if upgrading to 8.11.0 is difficult: 7.3.1)">
+        <fix-alternatives>
+            <fix-replace
+                description="Change to 8.11.0"
+                family="Update versions"
+                oldString="7.3.0"
+                replacement="8.11.0"
+                priority="0"/>
+            <fix-replace
+                description="Change to 7.3.1"
+                family="Update versions"
+                robot="true"
+                independent="true"
+                oldString="7.3.0"
+                replacement="7.3.1"
+                priority="0"/>
+        </fix-alternatives>
+        <location
+            file="${:updater*projectDir}/build.gradle"
+            line="12"
+            column="19"
+            startOffset="202"
+            endLine="12"
+            endColumn="57"
+            endOffset="240"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of `compileSdkVersion` than 33 is available: 35">
+        <fix-replace
+            description="Set compileSdkVersion to 35"
+            oldString="33"
+            replacement="35"
+            priority="0"/>
+        <location
+            file="${:updater*projectDir}/build.gradle"
+            line="28"
+            column="5"
+            startOffset="504"
+            endLine="28"
+            endColumn="25"
+            endOffset="524"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of org.jetbrains.kotlin:kotlin-stdlib-jdk7 than 1.8.20 is available: 2.1.0">
+        <location
+            file="${:updater*projectDir}/build.gradle"
+            line="52"
+            column="20"
+            startOffset="978"
+            endLine="52"
+            endColumn="77"
+            endOffset="1035"/>
+    </incident>
+
+</incidents>

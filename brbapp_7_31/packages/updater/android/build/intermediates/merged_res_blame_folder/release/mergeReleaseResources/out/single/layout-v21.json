@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "com.marsad.updater-release-27:/layout-v21/notification_action_tombstone.xml",
+        "source": "com.marsad.updater-core-1.13.1-4:/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "com.marsad.updater-release-27:/layout-v21/notification_template_icon_group.xml",
+        "source": "com.marsad.updater-core-1.13.1-4:/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "com.marsad.updater-release-27:/layout-v21/notification_template_custom_big.xml",
+        "source": "com.marsad.updater-core-1.13.1-4:/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "com.marsad.updater-release-27:/layout-v21/notification_action.xml",
+        "source": "com.marsad.updater-core-1.13.1-4:/layout-v21/notification_action.xml"
+    }
+]
