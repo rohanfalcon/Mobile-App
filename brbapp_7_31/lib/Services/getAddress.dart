@@ -64,7 +64,7 @@ Future<bool> checkBooking() async {
   var data = renter.docs.map((s) => s.data());
   var userData = data.map((d) => Users.fromJson(d));
 
-  if (userData.isEmpty) {
+  if (userData.isEmpty && guestAccess == true) {
     print("Booking we are false");
     status = false;
   } else {

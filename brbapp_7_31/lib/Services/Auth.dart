@@ -8,9 +8,11 @@ class AuthService {
   dynamic authFire;
   // final user = FirebaseAuth.instance.currentUser;
 
-  Future<void> anonLogin() async {
+  Future<void> anonLogin(context) async {
     try {
       await FirebaseAuth.instance.signInAnonymously();
+      fireuserEmail = 'Guest';
+      updateIcon(context);
       //print("You are in");
     } on FirebaseAuthException {
       // handle error

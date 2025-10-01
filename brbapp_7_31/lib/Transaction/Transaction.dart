@@ -374,21 +374,21 @@ class _TransactionScreenState extends State<TransactionScreen> {
                                   child: const Text('OK'),
                                   onPressed: () async {
                                     //showLoaderDialog(context);
-                                    if (await checkCard()) {
+                                    /*if (await checkCard()) {
                                       if (context.mounted) {
                                         cancelRental(context);
                                       }
-                                    } else {
-                                      if (context.mounted) {
-                                        if (await getEmail(context, Fireuser) ==
-                                            true) {
-                                          if (context.mounted) {
-                                            cancelRental(context);
-                                          }
-                                        }
-                                      }
+                                    } */ // else {
+                                    //if (context.mounted) {
+                                    // if (await getEmail(context, Fireuser) ==
+                                    // true) {
+                                    if (context.mounted) {
+                                      cancelRental(context);
                                     }
+                                    // }
+                                    // }
                                   },
+                                  //},
                                 ),
                               ],
                             ),
@@ -578,6 +578,7 @@ class _MyAppState extends State<ListBox> {
   final List<String> items = [
     'Sign in With Google',
     'Sign in different Google user',
+    'Continue as Guest',
     'Logout',
   ];
   String? selectedValue;
@@ -625,6 +626,17 @@ class _MyAppState extends State<ListBox> {
               {
                 AuthService().newUser(context);
                 MyAlert(context, "Please Login again");
+                break;
+              }
+
+            case 'Continue as Guest':
+              {
+                login = true;
+                guestAccess = false;
+                AuthService().anonLogin(context);
+                Navigator.of(
+                  context,
+                ).pushNamedAndRemoveUntil('/transaction', (route) => true);
                 break;
               }
 

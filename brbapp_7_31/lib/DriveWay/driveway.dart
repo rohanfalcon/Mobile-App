@@ -273,7 +273,7 @@ class _DriveWayState extends State<DriveWay> {
                                           'Temporary Limitation',
                                         ),
                                         content: const Text(
-                                          'Double booking is not currently allowed',
+                                          'Double booking or guest access not allowed',
                                         ),
                                         actions: [
                                           TextButton(

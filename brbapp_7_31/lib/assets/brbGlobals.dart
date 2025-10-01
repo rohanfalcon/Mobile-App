@@ -30,7 +30,7 @@ final CollectionReference UserCollection = FirebaseFirestore.instance
 
 bool login = false;
 bool transmit = false;
-bool guestAccess = false;
+bool guestAccess = true;
 var docPath = '';
 var userEmail = '';
 var globalFileName = '';
